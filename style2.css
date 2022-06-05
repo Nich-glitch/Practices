@@ -1,0 +1,21 @@
+body {
+    background: lightgray;
+}
+
+main {
+    width:50%;
+    margin:auto;
+    background: white;
+    padding:24px;
+}
+
+header {
+    display:flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
