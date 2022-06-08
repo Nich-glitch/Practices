@@ -1,4 +1,5 @@
-
+let todos = [];  
+  
   function get_todos() {
     return fetch("https://dummyjson.com/todos")
       .then(function (res) {
@@ -9,10 +10,22 @@
         return data;
       });
   }
+
+  
+  function filter_completed_todos(list) {
+    let result = list.filter(function(item) {
+      return item.completed;
+    });
+    return result;
+    }
    
   let list = document.querySelector(".list");
 
-    function renderTodoItem(title, tf, id) {
+  function reset_list() {
+    list.innerHTML = "";
+  }  
+  
+  function renderTodoItem(title, tf, id) {
 
     
     let item_element = document.createElement("div");
@@ -37,6 +50,7 @@
     };
 
     function renderList(list) {
+      reset_list();
              
       list.forEach(function (row) {
 renderTodoItem(row.todo, row.completed, row.id);
@@ -50,11 +64,6 @@ get_todos().then(function () {
 
       let links = document.querySelectorAll(".links a");
       
-      function filter_completed_todos(list) {
-        list.filter(function(item) {
-          return item.completed;
-        });
-        }
 
       links.forEach(function(link) {
         link.addEventListener("click", function(event) {
@@ -62,7 +71,7 @@ get_todos().then(function () {
           let element = event.target;
           let id = element.getAttribute("id");
 
-          id.filter(function(id) {
+          
             if (id ==="completed") {
               
               let completed_items = filter_completed_todos(todos);
@@ -72,9 +81,9 @@ get_todos().then(function () {
            else {
             renderList(todos);
           }
-          })
-        })
-      })
+          });
+        });
+      
 
   
 
